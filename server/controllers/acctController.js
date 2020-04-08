@@ -5,7 +5,7 @@ const logout = (req, res) => {
   }
   
   async function editUser(req, res) {
-    const { email, username, address, phone, is_vendor,  } = req.body;
+    const { email, username, phone, address, is_vendor } = req.body;
     const { user_id } = req.params;
     const db = req.app.get('db');
   

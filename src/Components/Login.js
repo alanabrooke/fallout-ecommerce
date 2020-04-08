@@ -28,7 +28,7 @@ class Login extends Component {
     handleClickLogin = () => {
         this.props.loginUser(this.props.username, this.props.password)
         .then(() => {
-            this.props.history.push('/items')
+            this.props.history.push('/products')
         }).catch(error => {
             console.log(this.props.username, this.props.password)
             alert('Incorrect username or password. Please try again.')
@@ -36,12 +36,12 @@ class Login extends Component {
     }
     
     handleClickRegister = () => {
-        this.props.registerUser(this.props.email, this.props.username, this.props.password, this.props.phone, this.props.address, this.props.is_vendor)
+        this.props.registerUser(this.props.email, this.props.username, this.props.phone, this.props.address, this.props.password, this.props.is_vendor)
         .then(() => {
-            this.props.history.push('/items')
+            this.props.history.push('/products')
             this.props.loginUser(this.props.username, this.props.password)
-            console.log(this.props.email, this.props.username, this.props.password, this.props.phone, this.props.address, this.props.is_vendor)
         }).catch(error => {
+            // console.log(this.props.email, this.props.username, this.props.password, this.props.phone, this.props.address, this.props.is_vendor)
             console.log(error)
             // window.location.reload();
         })
@@ -88,17 +88,17 @@ class Login extends Component {
                 <input placeholder='address' onChange={this.handleChange}/>
                 <input placeholder='password' onChange={this.handleChange}/>
                 <select onChange={this.handleChange}>
-                    <option>
+                    <option val='false'>
                         Customer
                     </option>
-                    <option>
+                    <option val='true'>
                         Vendor
                     </option>
                 </select>
                 <button>Upload Profile Image</button>
                <button onClick={this.handleClickRegister}>Register</button>
 
-               <Link to='items'>Continue as guest</Link>
+               <Link to='Products'>Continue as guest</Link>
             </div>
         )
     }
@@ -107,9 +107,9 @@ const mapStateToProps = state => {
     return {
         email: state.authReducer.email,
         username: state.authReducer.username,
-        password: state.authReducer.password,
         phone: state.authReducer.phone,
         address: state.authReducer.address,
+        password: state.authReducer.password,
         is_vendor: state.authReducer.is_vendor
     }
 }

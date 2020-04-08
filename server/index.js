@@ -3,6 +3,7 @@ const express = require('express')
 const massive = require('massive')
 const app = express()
 const session = require('express-session')
+const auth = require('./middleware/checkSessions');
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
@@ -26,27 +27,42 @@ app.use(
         }
     })
     )
-    app.use(express.json())
+
+app.use(express.json())
 
 ////ENDPOINTS////
 
 //controllers
-const auth = require('./controllers/authController')
-const acct = require('./controllers/acctController')
-const {getItems} = require('./controllers/itemsController')
+const {getUser, register, login} = require('./controllers/authController')
+const {deleteUser, editUser, logout} = require('./controllers/acctController')
+const {getProducts, addProduct, editProduct, deleteProduct } = require('./controllers/productController')
+const { cartCount, getCart, addToCart, removeFromCart, clearCart } = require('./controllers/cartController');
 
 //auth 
-app.get('/user', auth.getUser )
-app.post('/register', auth.register);
-app.post('/login', auth.login);
+app.get('/account', getUser )
+app.post('/register', register);
+app.post('/login', login);
 
 //acct
-app.put('/account/edit/${user_id}', acct.editUser)
-app.delete('/account/delete/${user_id}', acct.deleteUser)
-app.post('/account/logout', acct.logout);
+app.put('/account/edit/${user_id}', editUser)
+app.delete('/account/delete/${user_id}', deleteUser)
+app.post('/account/logout', logout);
 
-//items
-app.get('/items', getItems )
+//vendor
+app.post('/vendor/add', auth.usersOnly, auth.vendorsOnly, addProduct);
+app.put('/vendor/edit/:product_id', auth.usersOnly, auth.vendorsOnly, editProduct);
+app.delete('/vendor/delete/:product_id', auth.usersOnly, auth.vendorsOnly, deleteProduct)
+
+//products
+app.get('/products', getProducts )
+app.post('/products', addProduct )
+
+//cart
+app.get('/cart/count', cartCount);
+app.get('/cart/products', getCart);
+app.post('/cart/add/:prod_id', addToCart);
+app.delete('/cart/delete/:prod_id', removeFromCart);
+app.delete('/cart/clear', clearCart);
 
 ////
 

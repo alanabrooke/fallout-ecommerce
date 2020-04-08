@@ -25,3 +25,6 @@ CREATE TABLE products (
 
 -- INSERT INTO products 
 -- VALUES  (1, 'item test', 'testing desc', '500 caps')
+
+-- INSERT INTO products 
+-- VALUES  (2, 'item test 2!', 'testing desc 2!!', '1000 caps')

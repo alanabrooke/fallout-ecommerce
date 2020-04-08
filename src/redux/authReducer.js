@@ -43,11 +43,12 @@ export const registerUser = (email, username, phone, address, password, is_vendo
 export const getUser = () => {
     return {
         type: GET_USER,
-        payload: axios.get('/user')
+        payload: axios.get('/account')
     }
 }
 export const loginUser = (username,password) => {
-   return { type: LOGIN_USER,
+   return { 
+       type: LOGIN_USER,
     payload: axios.post('/login', {
         username,
         password
@@ -76,7 +77,7 @@ export default function authReducer(state = initialState, action) {
                 username: payload.data.username,
                 phone: payload.data.phone,
                 address: payload.data.address,
-                is_vendor: payload.data.is_vendor,
+                // is_vendor: payload.data.is_vendor,
                 loading: false
                 }
         case `${REGISTER_USER}_PENDING`:

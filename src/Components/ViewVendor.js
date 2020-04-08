@@ -6,7 +6,7 @@ export default class ViewVendor extends Component {
     render() {
         return(
             <div>
-                 <Link to='/Items'>Back to Home</Link>
+                 <Link to='/Products'>Back to Home</Link>
                 <h1>Viewing Vendor Page</h1>
             </div>
         )
