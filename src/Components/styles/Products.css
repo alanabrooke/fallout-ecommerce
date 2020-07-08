@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 img {
   height: 250px;
   width: 250px;
@@ -11,5 +12,24 @@ img {
 .nuke {
   height: 100px;
   width: 200px;
+}
+
+.products {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+figcaption {
+  font-family: 'VT323', monospace;
+  font-size: 25px;
 }
 /*# sourceMappingURL=Products.css.map */
