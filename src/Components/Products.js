@@ -65,7 +65,7 @@ class Products extends Component {
             <figure>
           <img class='nuke' src='https://gamepedia.cursecdn.com/fallout_gamepedia/thumb/7/79/AmmoFatManFO4.png/1200px-AmmoFatManFO4.png' />
           <figcaption>
-              Mini nuke
+              Mini-nuke
               </figcaption>
             </figure>
             <figure>

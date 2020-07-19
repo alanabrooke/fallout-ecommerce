@@ -5,11 +5,11 @@ const app = express()
 const session = require('express-session')
 const auth = require('./middleware/checkSessions');
 
-const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
+const {SERVER_PORT, DATABASE_URL, SESSION_SECRET} = process.env;
 
 
 
-massive(CONNECTION_STRING)
+massive(DATABASE_URL)
 .then(db => {
     app.set('db',db)
 })

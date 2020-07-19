@@ -22,7 +22,7 @@ class Login extends Component {
 
     handleChange = e => {
         this.props.updateState({ [e.target.name]: e.target.value})
-        // console.log(e.target.value)
+        console.log(e.target.value)
     }
     
     handleClickLogin = () => {
@@ -74,7 +74,8 @@ class Login extends Component {
 // }
         return(
             <div>
-                <h1>Wasteland Stop & Shop</h1>
+                <h1>Craterside Supply</h1>
+                <h2>We're on the internet now!</h2>
 
                 <p>Login</p>
                 <input placeholder='username' onChange={this.handleChange}/>
@@ -97,7 +98,6 @@ class Login extends Component {
                 </select>
                 <button>Upload Profile Image</button>
                <button onClick={this.handleClickRegister}>Register</button>
-
                <Link to='Products'>Continue as guest</Link>
             </div>
         )
@@ -110,7 +110,8 @@ const mapStateToProps = state => {
         phone: state.authReducer.phone,
         address: state.authReducer.address,
         password: state.authReducer.password,
-        is_vendor: state.authReducer.is_vendor
+        is_vendor: state.authReducer.is_vendor,
+        profile_img: state.authReducer.profile_img
     }
 }
 

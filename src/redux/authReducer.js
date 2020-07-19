@@ -7,6 +7,7 @@ const initialState = {
     address: '',
     password: '',
     is_vendor: null, 
+    profile_img: '',
     user: [],
     loading: false
 }
@@ -26,7 +27,7 @@ export const updateState = e => {
     }
 }
 
-export const registerUser = (email, username, phone, address, password, is_vendor) => {
+export const registerUser = (email, username, phone, address, password, is_vendor, profile_img) => {
     return {
         type: REGISTER_USER,
         payload: axios.post('/register', {
@@ -35,7 +36,8 @@ export const registerUser = (email, username, phone, address, password, is_vendo
             phone, 
             address,
             password,
-            is_vendor
+            is_vendor,
+            profile_img
         })
     }
 }
@@ -48,8 +50,8 @@ export const getUser = () => {
 }
 export const loginUser = (username,password) => {
    return { 
-       type: LOGIN_USER,
-    payload: axios.post('/login', {
+        type: LOGIN_USER,
+        payload: axios.post('/login', {
         username,
         password
     })
@@ -69,7 +71,7 @@ export default function authReducer(state = initialState, action) {
                 ...state,
                 loading: true
                 }
-    case `${GET_USER}_FULFILLED`:
+        case `${GET_USER}_FULFILLED`:
             return {
                 ...state,
                 user_id: payload.data.user_id,
@@ -77,7 +79,8 @@ export default function authReducer(state = initialState, action) {
                 username: payload.data.username,
                 phone: payload.data.phone,
                 address: payload.data.address,
-                // is_vendor: payload.data.is_vendor,
+                is_vendor: payload.data.is_vendor,
+                profile_img: payload.data.profile_img,
                 loading: false
                 }
         case `${REGISTER_USER}_PENDING`:
